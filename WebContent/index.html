@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="ISO-8859-1">
+<title>Trip</title>
+<style>
+
+body{
+	margin: 0px;
+	padding: 0px;
+	background-color: #4da6ff;
+}
+
+	.container {
+  margin: 50px auto;
+  width: 240px;
+  
+}
+ 
+.login {
+  position: relative;
+  margin: 0 auto;
+  padding: 50px;
+  width: 310px;
+}
+.login p.submit {
+  text-align: right;
+}
+ 
+.login-help {
+  margin: 20px 0;
+  font-size: 11px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px  #99e6ff;
+}
+.container {
+  margin: 50px auto;
+  width: 640px;
+  
+}
+.login:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  z-index: -1;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 4px 14px 0px  #002933;
+}
+ 
+.login h1 {
+  margin: -20px -20px 21px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family:Monospace ;
+  color:black;
+  text-align: center;
+  background: #004d3d;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px 3px 0 0;
+  -webkit-box-shadow: 0 1px whitesmoke;
+  box-shadow: 0 1px #00ccff;
+  background-color: whitesmoke;
+}
+ 
+.login p {
+  margin: 20px 0 0;
+}
+ 
+.login p:first-child {
+  margin-top: 0;
+}
+ 
+.login input[type=text], .login input[type=password] {
+  width: 278px;
+  padding: 10px;
+}
+ 
+.login p.remember_me {
+  float: left;
+  line-height: 31px;
+}
+ 
+.login p.remember_me label {
+  font-size: 12px;
+  color: #777;
+  cursor: pointer;
+}
+ 
+.login p.remember_me input {
+  position: relative;
+  bottom: 1px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.container .box { 
+                width:800px; 
+                height:500px;
+                margin:50px; 
+                display:table; 
+            } 
+            .container .box .box-row { 
+                display:table-row; 
+            } 
+            .container .box .box-cell { 
+                display:table-cell; 
+                width:50%; 
+                padding:10px; 
+            } 
+            .container .box .box-cell.box1 { 
+                background:#4d4d00; 
+                color:white; 
+                text-align:justify; 
+             } 
+            .container .box .box-cell.box2 { 
+                background:#666600; 
+                text-align:justify 
+            } 
+            
+ .register-btn {
+  background-color:  #99e6ff; /* Blue */
+ 
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 0px 23px 0px -5px;;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 0px black;
+  padding: 10px;
+  width: 160px !important;
+  box-shadow: 0px 3px 6px black;
+}      
+input{
+	background-color:  #f0f5f5;
+	border:1px solid #e0ebeb;
+	font-family: Sans-serif ;
+}     
+button {
+  background-color:  #00ccff; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px black;
+  display: inline-block;
+  font-size: 15px;
+  margin: 10px 2px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 0px black;
+  padding: 10px;
+  width: 131px;
+  box-shadow: 0px 3px 6px black;
+  border-radius: 4px;
+  align: center;
+ 
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: whitesmoke;
+}
+.regis{
+	display: inline-flex;
+	width: 100%;
+}
+.regis_btn{
+	display: inline-flex;
+	width: 100%;
+	margin-top: 20px;
+}
+#logout{
+margin: 0px 0px 3px 90px;
+position: relative;
+  width: 50%;
+
+}
+
+#newFromLocationVal{
+font-size: 25px;
+color:blue;
+}
+#newToLocationVal{
+font-size: 25px;
+color:blue;
+}
+#distance{
+font-size: 20px;
+color:green;
+}
+</style>
+
+</head>
+<body>
+<!-- login as user div -->
+<div id="logindiv" class="container">
+<div id="logindivFinal" class="container">
+<div class="container">
+  <div class="login">
+    <h1>Login </h1>
+    
+      <p><input type="text" name="username" id="username" value="" placeholder="Username"></p>
+      <p><input type="password" name="userpass" id="userpass" value="" placeholder="Password"></p>
+     
+      <p class="submit">
+      	<button onclick = "login()">Login</button>
+      </p>
+    <p>
+    New User? <button onclick = "register()">Register</button></br>
+    </p>
+    
+  </div> 
+</div>
+</div>
+
+</div>
+<!-- Register as user div -->
+	<Div id = "registerUserDetails" class="container" >
+		<div class="login">
+			<h1>New User registration</h1>
+			
+				<p>User Name:<input type="text" name="newUserNameLogin" id="newUserNameLogin" placeholder="Username or Email" required/></p>  
+				<p>Email:<input type="text" name="newUserEmail" id="newUserEmail" placeholder="Email Id" required/></p>
+				<p>Address:<input type="text" name="newUserAddress" id="newUserAddress" placeholder="Postal Address" required/></p>
+				<p>Password:<input type="password" name="newUserPassword" id="newUserPassword" placeholder="Password" required/></p>
+				<p>Repeat Password:<input type="password" name="newUserPassword2" id="newUserPassword2" placeholder="Repeat password" required/></p>
+				<p><button onclick = "registerUserDtls()">Submit</button></p>
+				
+			</div>
+		</Div>
+<!-- Index -->
+		<Div id = "mainDiv" class="container">
+			<div class="login">
+				<p><button onclick = "newTrip()">Create New Trip</button></p>
+				<p><button onclick = "display()">View All Trips</button></p>
+			</div>
+		</Div>
+<!-- calc distance -->
+		<Div id = "calcDistance" class="container">
+			<div class="login">
+				<h1>New Trip </h1>
+				
+					<p>From: <input type="text" name="newFromLocation" id="newFromLocation" placeholder="From Location"/></p>
+					<p>To: <input type="text" name="newToLocation" id="newToLocation" placeholder="To Location"/></p>
+					
+					
+					</br>
+					</br>
+					
+					<p><button onclick = "calculate()">Calculate</button></p>
+			</div>
+		</Div>
+<!-- Create a flight booking div -->
+		<Div id = "createNewTripDetails" class="container">
+			<div class="login">
+				<h1>New Trip </h1>
+				
+					<p  >From: <p id="newFromLocationVal"></p></p>
+					<p  >To: <p id="newToLocationVal"></p></p>
+					<p  >Distance (in km): <p id="distance"></p></p>
+					<p>Date: <input type="date" name="newScheduleDate" id="newScheduleDate" placeholder="Date"/></p>
+					<p>Start Time: <input type="time" name="startTime" id="startTime" placeholder="Time"/></p>
+					<p>End Time: <input type="time" name="endTime" id="endTime" placeholder="Time"/></p>
+				
+					</br>
+					</br>
+					
+					<p><button onclick = "createTrip()">Create</button></p>
+			</div>
+		</Div>
+		<!-- trip Data Table -->
+		<Div id="viewTrip" class="container">
+		<div class="login">
+		<p><button onclick = "filter()">Filter By Date</button></p>
+		</div>
+		</Div>
+		
+		<!-- filter trip Data Table -->
+		<Div id="filterTrip" class="container">
+		<div class="login">
+		<p>Date: <input type="date" name="filterDate" id="filterDate" placeholder="Date"/></p>
+		<p><button onclick = "dateFilter()">Check</button></p>
+		</div>
+		</Div>
+		<!-- trip Data Table -->
+		<div id="dataTable" class="usrTable">
+		
+		</div>
+</body>
+
+<script>
+
+// DIvs
+ var y = document.getElementById("logindiv");
+		y.style.display = "block";
+		
+		var x = document.getElementById("createNewTripDetails");
+		x.style.display = "none";
+		var z = document.getElementById("registerUserDetails");
+		z.style.display = "none";
+		var p = document.getElementById("calcDistance");
+		p.style.display = "none";
+		var q = document.getElementById("mainDiv");
+		q.style.display = "none";
+		var r = document.getElementById("viewTrip");
+		r.style.display = "none";
+		var s = document.getElementById("filterTrip");
+		s.style.display = "none";
+
+//filter
+function filter()
+{
+	var y = document.getElementById("filterTrip");
+	y.style.display = "block";
+	
+	var x = document.getElementById("viewTrip");
+	x.style.display = "none";
+}
+		
+		// index to create trip
+
+function newTrip()
+{
+	var p = document.getElementById("mainDiv");
+	p.style.display = "none";
+	
+	var p1 = document.getElementById("calcDistance");
+	p1.style.display = "block";
+}
+//index to view trip
+
+function tripDtls()
+{
+	var p = document.getElementById("mainDiv");
+	p.style.display = "none";
+	
+	var p1 = document.getElementById("viewTrip");
+	p1.style.display = "block";
+}
+		
+// register user function
+function registerUserDtls(){
+	
+	
+	var urllog = "http://localhost:8080/Trip/rest/registerNewUser";
+	var newUserNameLogin = document.getElementById("newUserNameLogin").value;
+	var newUserEmail = document.getElementById("newUserEmail").value;
+	var newUserAddress = document.getElementById("newUserAddress").value;
+	var newUserPassword = document.getElementById("newUserPassword").value;
+	var newUserPassword2 = document.getElementById("newUserPassword2").value;
+	
+	if(newUserPassword2==newUserPassword){
+	$.ajax({
+	    type: 'POST',
+	    url: urllog,
+	    data :{userName: newUserNameLogin, email: newUserEmail,address: newUserAddress,  password: newUserPassword},
+	    success: function(result){
+	    	alert(result);
+	    	clearRegisterUserDtls();
+	    	
+	    }
+	})
+	}
+	else
+		{
+		alert("Password not matched");
+		}
+	
+	
+}
+function register()
+{
+	
+	 var y = document.getElementById("registerUserDetails");
+		y.style.display = "block";
+		
+		var x = document.getElementById("logindiv");
+		x.style.display = "none";
+}
+function clearRegisterUserDtls()
+{
+	 var y = document.getElementById("mainDiv");
+		y.style.display = "block";
+		
+		var x = document.getElementById("registerUserDetails");
+		x.style.display = "none";
+		var s = document.getElementById("filterTrip");
+		s.style.display = "none";
+		var p = document.getElementById("calcDistance");
+		p.style.display = "none";
+}
+
+//<!-- login function-->
+function login(){
+		var urllog = "http://localhost:8080/Trip/rest/login";
+		var usr = document.getElementById("username").value;
+		var pass = document.getElementById("userpass").value;
+		var fd = new FormData(); 
+		$.ajax({
+		    type: 'POST',
+		    url: urllog,
+		    data :{param1: usr, param2: pass},
+		    success: function(result){
+		    	//loginSucessDiv(result);
+		    	 if(result[0].status=='sucess'){
+		    	alert(result[0].data)
+		    		loginSucessDiv(result);
+		    	}else{
+		    		alert(result[0].data);
+		    	} 
+		    	
+		    }
+		})
+	}
+
+// login success div
+
+function loginSucessDiv(result){
+	
+	UID = result[0].userId;
+	 var y = document.getElementById("mainDiv");
+		y.style.display = "block";
+		
+		var x = document.getElementById("logindiv");
+		x.style.display = "none";
+		var r = document.getElementById("viewTrip");
+		r.style.display = "block";
+		var s = document.getElementById("filterTrip");
+		s.style.display = "none";
+		var s1 = document.getElementById("calcDistance");
+		s1.style.display = "none";
+}
+// trip creation function
+function createTrip()
+{
+	var urllog = "http://localhost:8080/Trip/rest/tripCreate";
+	var date = document.getElementById("newScheduleDate").value;
+	var start = document.getElementById("startTime").value;
+	var end = document.getElementById("endTime").value;
+	
+	
+	$.ajax({
+	    type: 'POST',
+	    url: urllog,
+	    data :{from:a1,to:b1,start:start,end:end,uid:UID,dist:dis,date:date},
+	    success: function(result){
+	    	alert(result);
+	    	clearTrip();
+	    }
+	})
+}
+
+// function clear trip
+function clearTrip()
+{
+var y = document.getElementById("calcDistance");
+y.style.display = "block";
+
+var y = document.getElementById("createNewTripDetails");
+y.style.display = "none";
+var r = document.getElementById("viewTrip");
+r.style.display = "block";
+var s = document.getElementById("filterTrip");
+s.style.display = "none";
+var r1 = document.getElementById("mainDiv");
+r1.style.display = "block";
+var s1 = document.getElementById("calcDistance");
+s1.style.display = "none";
+
+}
+
+
+// function to set location and distance
+
+function getDist(data)
+{
+	//alert(data.distance);
+	 dis=data.distance;
+ var y = document.getElementById("calcDistance");
+	y.style.display = "none";
+	document.getElementById("newFromLocationVal").innerHTML=a1;
+	 document.getElementById("newToLocationVal").innerHTML=b1;
+	 document.getElementById("distance").innerHTML=dis;
+	var x = document.getElementById("createNewTripDetails");
+	x.style.display = "block";
+	 
+}
+var a1,b1,dis, UID ;  // global variable
+
+
+// function to calculate distance 
+function calculate()
+{
+
+	var from = document.getElementById("newFromLocation").value;
+	var to = document.getElementById("newToLocation").value;
+	a1=from;
+	b1=to;
+	var url= "https://www.distance24.org/route.json?stops="+from+"|"+to;
+	fetch(url)
+	  .then(response => response.json())
+	  .then(data => getDist(data));
+	
+}
+
+<!-- Display Data function-->
+function display(){
+	 var urllog = "http://localhost:8080/Trip/rest/tripData";
+		
+		$.ajax({
+		    type: 'POST',
+		    url: urllog,
+		    data :{userId:UID},
+		    success: function(resultinfo){
+		    	 if(resultinfo.length>0){
+		    		 displayData(resultinfo);
+		    		// clearRegisterUserDtls();
+		    		 
+		    
+		    	}else{
+		    		alert("Error occured");
+		    	} 
+		    	
+		    }
+		})
+}
+
+var tempData;
+function displayData(result){
+		var myDispDtls ="<table><tr><th>From</th><th>To</th><th>Distance</th><th>Date</th><th>Start Time</th><th>End Time</th><th>Delete</th></tr><tr>";
+		
+		//Employee data
+		 tempData = result;
+		var d =0;
+		for (var x = 0; x<result.length;x++) {
+			var tempId = result[x]['id'];
+			d= +d + +result[x]['distance'];
+		myDispDtls = myDispDtls +"<td>"  + result[x]['from'] +"</td>"+"<td>"  + result[x]['to'] +"</td>"+"<td>"  + result[x]['distance'] +"</td>"+"<td>"  + result[x]['date'] +"</td>"+"<td>"  + result[x]['start'] +"</td>"+"<td>"  + result[x]['end'] +"</td>"+"<td>"+"<button id="+result[x]['id'] +"  onclick = deleteDtls(this.id)>"+"Delete"+"</td>"+"</tr>";
+		}
+		myDispDtls = myDispDtls+"<tr>Total Distance :"+d+" km</tr>" +"</table>";
+		
+		document.getElementById("dataTable").innerHTML = myDispDtls;
+	}
+
+// date filter
+function dateFilter()
+{
+	 var urllog = "http://localhost:8080/Trip/rest/filterTripData";
+	 var date = document.getElementById("filterDate").value;
+		$.ajax({
+		    type: 'POST',
+		    url: urllog,
+		    data :{userId:UID,date:date},
+		    success: function(result){
+		    	 if(result.length>0){
+		    		 displayTrip(result);
+		    		
+		    	}else{
+		    		alert("No trips found for the date");
+		    	} 
+		    	
+		    }
+		})
+	
+}
+
+function displayTrip(result){
+	var myDispDtls ="<table><tr><th>From</th><th>To</th><th>Distance</th><th>Date</th><th>Start Time</th><th>End Time</th><th>Delete</th></tr><tr>";
+	
+	//Employee data
+	 tempData = result;
+	var d=0;
+	for (var x = 0; x<result.length;x++) {
+		d= +d + +result[x]['distance'];
+		var tempId = result[x]['id'];
+	myDispDtls = myDispDtls +"<td>"  + result[x]['from'] +"</td>"+"<td>"  + result[x]['to'] +"</td>"+"<td>"  + result[x]['distance'] +"</td>"+"<td>"  + result[x]['date'] +"</td>"+"<td>"  + result[x]['start'] +"</td>"+"<td>"  + result[x]['end'] +"</td>"+"<td>"+"<button id="+result[x]['id'] +"  onclick = deleteDtls(this.id)>"+"Delete"+"</td>"+"</tr>";
+	}
+	myDispDtls = myDispDtls+"<tr>Total Distance :"+d+" km</tr>" +"</table>";
+	
+	document.getElementById("dataTable").innerHTML = myDispDtls;
+}
+//<!-- Delete Data -->
+
+function deleteDtls(x)
+{
+	 var txt;
+	  if (confirm("Are you sure?")) {
+	    
+	  
+	 var usrId = x;
+	 var urllog = "http://localhost:8080/Trip/rest/deletetrip";
+		
+		
+		$.ajax({
+		    type: 'POST',
+		    url: urllog,
+		    data :{tripid: usrId},
+		    success: function(result){
+		    	if(result==true){
+		    		alert("Data Removed");
+		    		var x = document.getElementById("mainDiv");
+					x.style.display = "block";
+					
+		    	}
+		    
+		    }
+		})
+}
+}
+
+</script>
+
+</html>
